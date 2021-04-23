@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--Search tic tac toe in net for reference of this project-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac_Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="state">
+        <div id="sun"></div>
+        <div id="moon"></div>
+    </div>
+    </body>
+    <div id="mode">&#9728</div>
+    <!-- <button id="mode" onclick="change_mode()"></button> -->
+    <div class="container">
+        <p id="name"> Tic-Tac-Toe!</p>
+        <div id="player_name">
+            <div id="one">X
+                <p id="score_one">-</p> <!-- Here we will show how many times player won -->
+            </div>
+            <div id="two">O
+                <p id="score_two">-</p>
+            </div>
+        </div>
+        <div id="grid-box">
+            <div class="grid" id="a" onclick="a_click()"></div>
+            <div class="grid" id="b" onclick="b_click()"></div>
+            <div class="grid" id="c" onclick="c_click()"></div>
+            <div class="grid" id="d" onclick="d_click()"></div>
+            <div class="grid" id="e" onclick="e_click()"></div>
+            <div class="grid" id="f" onclick="f_click()"></div>
+            <div class="grid" id="g" onclick="g_click()"></div>
+            <div class="grid" id="h" onclick="h_click()"></div>
+            <div class="grid" id="i" onclick="i_click()"></div>
+        </div>
+        <div id="reset_game" onclick="reset_game()">Reset Game</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

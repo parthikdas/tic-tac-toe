@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+:root {
+    --light: linear-gradient(#ffffff -8rem,#6dd5fa,#2980b9);
+    --dark: linear-gradient(#0f0c29 12%,#302b63,#24243e);
+    --textcolorlight: #00127A;
+    --textcolordark: rgba(238, 238, 238, 0.884);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    min-height: 100vh;
+    background: var(--light);
+    color: var(--textcolorlight);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dark { /* when someone clicked the dark button it will give dark class to body and colours will change*/
+    background: var(--dark);
+    color: var(--textcolordark);
+    transition: 1s;
+}
+.dark > #state > #sun { /* When dark class is enabled sun which is inside state is disabled*/
+    display: none;
+}
+.dark > #state > #moon { /* When dark class is enabled moon which is inside state is enabled*/
+    display: block;
+}
+.dark > #mode {
+    background-color: #74d7fcd5;
+}
+.dark > .container >#reset_game {
+    box-shadow: 0 .1rem .2rem rgba(255, 255, 255, 0.4);
+}
+#state {
+    height: 10rem;
+    width: 10rem;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 1rem;
+}
+#sun { /* sun */
+    height: 8rem;
+    width: 8rem;
+    position: relative;
+    background-color: #ffff32f3;
+    border-radius: 50%;
+    box-shadow: 0 0 0 .8rem #ffff7fbd,
+                0 0 0 1.5rem #ffffb225,
+                0 0 0 2rem #ffffb262;
+    display: block;
+}
+/* moon starts */
+#moon {
+    height: 8rem;
+    width: 8rem;
+    position: relative;
+    background-color: #f7d116;
+    border-radius: 50%;
+    display: none;
+}
+#moon:before {
+    content: "";
+    position: absolute;
+    height: 8rem;
+    width: 8rem;
+    background-color:#0f0c29;
+    border-radius: 50%;
+    transform: translate(1.8rem,-1rem);
+}
+/* moon ends */
+#mode {
+    height: 2rem;
+    width: 2rem;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background-color: #152238;
+    border-radius: 1rem;
+    color: yellow;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.container {
+    height: 35rem;
+    width: 25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#name {
+    font-size: 3.5rem;
+    margin-top: -2.8rem;
+    margin-bottom: 2.8rem;
+}
+#player_name {
+    height: 3.5rem;
+    width: 25rem;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: flex;
+    margin-bottom: 2.5rem;
+}
+#one, #two{
+    width: 12rem;
+    height: 100%;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+    position: relative;
+    box-shadow: 0 .3rem .4rem rgba(0, 0, 0, 0.4);
+}
+#one {
+    margin-right: 1rem;
+    box-shadow: 0 .4rem .5rem #146ca4; /* as 1st chance is player 1 */
+    /*The colours goes very well with light and dark mode */
+}
+#score_one, #score_two {
+    position: absolute;
+    right: .8rem;
+}
+#grid-box {
+    height: 21rem;
+    width: 21rem;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 0 .6rem .5rem rgba(0, 0, 0, 0.4);
+}
+.grid{
+    height: 7rem;
+    width: 7rem;
+    cursor: pointer;
+    font-size: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#d, #e, #f, /* horizontal lines */
+#g, #h, #i {
+    border-top: 0.15rem solid rgba(0, 0, 0, 0.4);
+}
+#a, #b, /* vertical lines */
+#d, #e,
+#g, #h {
+    border-right: 0.15rem solid rgba(0, 0, 0, 0.4);
+}
+#reset_game {
+    position: absolute;
+    bottom: 4rem;
+    width: 12rem;
+    padding: 1rem;
+    font-size: 1.8rem;
+    box-shadow: 0 .3rem .4rem rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    border-radius: 1rem;
+    text-align: center;
+}
