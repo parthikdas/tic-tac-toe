@@ -175,6 +175,11 @@ body{
     border-radius: 1rem;
     text-align: center;
 }
+#reset_game:hover {
+    background-color: rgba(255, 0, 0, 0.829);
+    color: var(--textcolordark);
+    transition: .5s;
+}
 /* Mobile Compatibility */
 @media screen and (max-width: 830px){
     .container {
@@ -188,21 +193,21 @@ body{
         left: .5rem;
     }
     #sun {
-        height: 3rem;
-        width: 3rem;
+        height: 4rem;
+        width: 4rem;
         position: relative;
         background-color: #ffff32f3;
-        box-shadow: 0 0 0 .5rem #ffff7fbd,
-                    0 0 0 1rem #ffffb225,
-                    0 0 0 1.5rem #ffffb262;
+        box-shadow: 0 0 0 .6rem #ffff7fbd,
+                    0 0 0 1.1rem #ffffb225,
+                    0 0 0 1.6rem #ffffb262;
     }
     #moon {
-        height: 3rem;
-        width: 3rem;
+        height: 4.2rem;
+        width: 4.2rem;
     }
     #moon:before {
-        height: 3rem;
-        width: 3rem;
+        height: 4.2rem;
+        width: 4.2rem;
         border-radius: 50%;
         transform: translate(.8rem,-.6rem);
     }
@@ -216,7 +221,7 @@ body{
     }
     #name {
         font-size: 2.3rem;
-        margin-top: -.2rem;
+        margin-top: -1.2rem;
         margin-bottom: .2rem;
     }
     #win {
@@ -226,24 +231,21 @@ body{
         font-size: 1rem;
     }
     #player_name {
-        height: 2.2rem;
+        height: 2.5rem;
         width: 100%;
         font-size: 1.8rem;
-        margin-bottom: 2rem;
+        margin-bottom: 2.2rem;
     }
     #one, #two{
-        width: 10rem;
+        width: 11rem;
         height: 100%;
         padding: .5rem;
         box-shadow: 0 .2rem .3rem rgba(0, 0, 0, 0.4);
     }
     #one {
-        margin-right: 1rem;
-        box-shadow: 0 .4rem .5rem #146ca4; /* as 1st chance is player 1 */
-        /*The colours goes very well with light and dark mode */
+        box-shadow: 0 .4rem .5rem #146ca4;
     }
     #score_one, #score_two {
-        position: absolute;
         right: .8rem;
     }
     #grid-box {
@@ -257,11 +259,14 @@ body{
         font-size: 2.5rem;
     }
     #reset_game {
-        bottom: 1.6rem;
+        bottom: 1.8rem;
         width: 10rem;
-        padding: .4rem;
-        font-size: 1.1rem;
+        padding: .5rem;
+        font-size: 1.3rem;
         box-shadow: 0 .2rem .3rem rgba(0, 0, 0, 0.4);
-        border-radius: 1rem;
+    }
+    #reset_game:hover {
+        background-color: transparent;
+        color: var(--textcolorlight);
     }
 }
