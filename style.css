@@ -2,7 +2,7 @@
 :root {
     --light: linear-gradient(#ffffff -8rem,#6dd5fa,#2980b9);
     --dark: linear-gradient(#0f0c29 12%,#302b63,#24243e);
-    --textcolorlight: #00127A;
+    --textcolorlight: #00127aec;
     --textcolordark: rgba(238, 238, 238, 0.884);
 }
 *{
@@ -114,7 +114,6 @@ body{
     height: 3.5rem;
     width: 25rem;
     font-size: 2.5rem;
-    text-transform: uppercase;
     margin-bottom: 2rem;
     display: flex;
     margin-bottom: 2.5rem;
@@ -167,7 +166,7 @@ body{
 }
 #reset_game {
     position: absolute;
-    bottom: 4rem;
+    bottom: 2.8rem;
     width: 14rem;
     padding: .8rem;
     font-size: 1.8rem;
@@ -175,4 +174,94 @@ body{
     cursor: pointer;
     border-radius: 1rem;
     text-align: center;
+}
+/* Mobile Compatibility */
+@media screen and (max-width: 830px){
+    .container {
+        height: 30rem;
+        width: 18rem;
+    }
+    #state {
+        height: 5rem;
+        width: 5rem;
+        top: .5rem;
+        left: .5rem;
+    }
+    #sun {
+        height: 3rem;
+        width: 3rem;
+        position: relative;
+        background-color: #ffff32f3;
+        box-shadow: 0 0 0 .5rem #ffff7fbd,
+                    0 0 0 1rem #ffffb225,
+                    0 0 0 1.5rem #ffffb262;
+    }
+    #moon {
+        height: 3rem;
+        width: 3rem;
+    }
+    #moon:before {
+        height: 3rem;
+        width: 3rem;
+        border-radius: 50%;
+        transform: translate(.8rem,-.6rem);
+    }
+    #mode {
+        height: 2rem;
+        width: 2rem;
+        top: 1rem;
+        right: 1rem;
+        border-radius: 1rem;
+        font-size: 1.4rem;
+    }
+    #name {
+        font-size: 2.3rem;
+        margin-top: -.2rem;
+        margin-bottom: .2rem;
+    }
+    #win {
+        height: 1.5rem;
+        width: 7rem;
+        margin-bottom: .4rem;
+        font-size: 1rem;
+    }
+    #player_name {
+        height: 2.2rem;
+        width: 100%;
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+    #one, #two{
+        width: 10rem;
+        height: 100%;
+        padding: .5rem;
+        box-shadow: 0 .2rem .3rem rgba(0, 0, 0, 0.4);
+    }
+    #one {
+        margin-right: 1rem;
+        box-shadow: 0 .4rem .5rem #146ca4; /* as 1st chance is player 1 */
+        /*The colours goes very well with light and dark mode */
+    }
+    #score_one, #score_two {
+        position: absolute;
+        right: .8rem;
+    }
+    #grid-box {
+        height: 15rem;
+        width: 15rem;
+        box-shadow: 0 .5rem .4rem rgba(0, 0, 0, 0.4);
+    }
+    .grid{
+        height: 5rem;
+        width: 5rem;
+        font-size: 2.5rem;
+    }
+    #reset_game {
+        bottom: 1.6rem;
+        width: 10rem;
+        padding: .4rem;
+        font-size: 1.1rem;
+        box-shadow: 0 .2rem .3rem rgba(0, 0, 0, 0.4);
+        border-radius: 1rem;
+    }
 }
