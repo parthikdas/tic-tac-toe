@@ -1,15 +1,11 @@
 var player1 = document.getElementById('one');
 var player2 = document.getElementById('two');
 var win = document.getElementById('win');
-var a = document.getElementById('a');
-var b = document.getElementById('b');
-var c = document.getElementById('c');
-var d = document.getElementById('d');
-var e = document.getElementById('e');
-var f = document.getElementById('f');
-var g = document.getElementById('g');
-var h = document.getElementById('h');
-var i = document.getElementById('i');
+var a = [document.getElementById('a'),document.getElementById('b'),
+document.getElementById('c'),document.getElementById('d'),document.getElementById('e'),
+document.getElementById('f'),document.getElementById('g'),document.getElementById('h'),
+document.getElementById('i')];
+var present = [false,false,false,false,false,false,false,false,false];//false means that place is empty
 var turn = 0; //if turn is 0 then its player 1 turn else if 1 then player 2
 var times = 0; //if times exceeds 9 then make it 0 and clear screen
 var make_move = 0; //after somebody wins and name is showing for 3sec within that time no player should make a move 
@@ -21,7 +17,7 @@ document.getElementById('mode').addEventListener('click', function () {
 });
 function change_mode() {
     var element = document.body;
-    element.classList.toggle("dark");    
+    element.classList.toggle('dark');    
 }
 //Code for dark mode ends
 
@@ -37,6 +33,9 @@ function next_turn() { //This function checks whose turn it is
         turn = 1;
         player1.style.boxShadow = "0 .4rem .5rem rgba(0, 0, 0, 0.4)";
         player2.style.boxShadow = "0 .4rem .5rem #146ca4";
+        setTimeout(() => { //some delay in computer's move
+            comp_play('O');
+        },500);
     } else {
         turn = 0;
         player1.style.boxShadow = "0 .4rem .5rem #146ca4";
@@ -55,24 +54,26 @@ function common_code() { //This function stores the code used by all _click() fu
         }
 }
 function a_click() {
-    if(a.innerHTML == "" && make_move == 0) { // This ensures no player can put symbol on others place and 2nd condition ensures after winning when name is showing nobody could make a move
-        a.innerHTML = check_value();
-        if(((a.innerHTML == b.innerHTML) && (b.innerHTML == c.innerHTML)) || //1st row
-        ((a.innerHTML == d.innerHTML) && (d.innerHTML == g.innerHTML)) || //1st column
-        ((a.innerHTML == e.innerHTML) && (e.innerHTML == i.innerHTML))) { //left diagonal
+    if(a[0].innerHTML == "" && make_move == 0) { // This ensures no player can put symbol on others place and 2nd condition ensures after winning when name is showing nobody could make a move
+        a[0].innerHTML = check_value();
+        present[0] = true; //making the places true so that comp will not do
+        if(((a[0].innerHTML == a[1].innerHTML) && (a[1].innerHTML == a[2].innerHTML)) || //1st row
+        ((a[0].innerHTML == a[3].innerHTML) && (a[3].innerHTML == a[6].innerHTML)) || //1st column
+        ((a[0].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[8].innerHTML))) { //left diagonal
             // So after player's turn check the above lines are same or not
             make_move = 1; // as it is one now nobody can make a move till everything is cleared and make_move becomes 0 again
-            which_player(a);
+            which_player(a[0]);
             return;
         }
         common_code();
     }
 }
 function b_click() {
-    if(b.innerHTML == ""  && make_move == 0) {
-        b.innerHTML = check_value();
-        if(((a.innerHTML == b.innerHTML) && (b.innerHTML == c.innerHTML)) || //1st row
-           ((b.innerHTML == e.innerHTML) && (e.innerHTML == h.innerHTML)) ) { //2nd column
+    if(a[1].innerHTML == ""  && make_move == 0) {
+        a[1].innerHTML = check_value();
+        present[1] = true;
+        if(((a[0].innerHTML == a[1].innerHTML) && (a[1].innerHTML == a[2].innerHTML)) || //1st row
+           ((a[1].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[7].innerHTML)) ) { //2nd column
             make_move = 1;
             which_player(b);
             return;
@@ -81,11 +82,12 @@ function b_click() {
     }
 }
 function c_click() {
-    if(c.innerHTML == ""  && make_move == 0){
-        c.innerHTML = check_value();
-        if(((a.innerHTML == b.innerHTML) && (b.innerHTML == c.innerHTML)) || //1st row
-           ((c.innerHTML == f.innerHTML) && (f.innerHTML == i.innerHTML)) || //3rd column
-           ((c.innerHTML == e.innerHTML) && (e.innerHTML == g.innerHTML))) { //right diagonal
+    if(a[2].innerHTML == ""  && make_move == 0){
+        a[2].innerHTML = check_value();
+        present[2] = true;
+        if(((a[0].innerHTML == a[1].innerHTML) && (a[1].innerHTML == a[2].innerHTML)) || //1st row
+           ((a[2].innerHTML == a[5].innerHTML) && (a[5].innerHTML == a[8].innerHTML)) || //3rd column
+           ((a[2].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[6].innerHTML))) { //right diagonal
             make_move = 1;
             which_player(c);
             return;
@@ -94,10 +96,11 @@ function c_click() {
     }
 }
 function d_click() {
-    if(d.innerHTML == ""  && make_move == 0){
-        d.innerHTML = check_value();
-        if(((d.innerHTML == e.innerHTML) && (e.innerHTML == f.innerHTML)) || //2nd row
-           ((a.innerHTML == d.innerHTML) && (d.innerHTML == g.innerHTML))) { //1st column
+    if(a[3].innerHTML == ""  && make_move == 0){
+        a[3].innerHTML = check_value();
+        present[3] = true;
+        if(((a[3].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[5].innerHTML)) || //2nd row
+           ((a[0].innerHTML == a[3].innerHTML) && (a[3].innerHTML == a[6].innerHTML))) { //1st column
             make_move = 1;
             which_player(d);
             return;
@@ -106,11 +109,12 @@ function d_click() {
     }
 }
 function e_click() {
-    if(e.innerHTML == ""  && make_move == 0) {
-        e.innerHTML = check_value();
-        if(((d.innerHTML == e.innerHTML) && (e.innerHTML == f.innerHTML)) || //2nd row
-           ((b.innerHTML == e.innerHTML) && (e.innerHTML == h.innerHTML)) || //2nd column
-           ((a.innerHTML == e.innerHTML) && (e.innerHTML == i.innerHTML))) { //left diagonal
+    if(a[4].innerHTML == ""  && make_move == 0) {
+        a[4].innerHTML = check_value();
+        present[4] = true;
+        if(((a[3].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[5].innerHTML)) || //2nd row
+           ((a[1].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[7].innerHTML)) || //2nd column
+           ((a[0].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[8].innerHTML))) { //left diagonal
             make_move = 1;
             which_player(e);
             return;
@@ -119,10 +123,11 @@ function e_click() {
     }   
 }
 function f_click() {
-    if(f.innerHTML == ""  && make_move == 0) {
-        f.innerHTML = check_value();
-        if(((d.innerHTML == e.innerHTML) && (e.innerHTML == f.innerHTML)) || //2nd row
-           ((c.innerHTML == f.innerHTML) && (f.innerHTML == i.innerHTML)) ) { //3rd column
+    if(a[5].innerHTML == ""  && make_move == 0) {
+        a[5].innerHTML = check_value();
+        present[5] = true;
+        if(((a[3].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[5].innerHTML)) || //2nd row
+           ((a[2].innerHTML == a[5].innerHTML) && (a[5].innerHTML == a[8].innerHTML)) ) { //3rd column
             make_move = 1;
             which_player(f);
             return;
@@ -131,11 +136,12 @@ function f_click() {
     }
 }
 function g_click() {
-    if(g.innerHTML == ""  && make_move == 0) {
-        g.innerHTML = check_value();
-        if(((a.innerHTML == d.innerHTML) && (d.innerHTML == g.innerHTML)) || //1st column
-           ((g.innerHTML == h.innerHTML) && (h.innerHTML == i.innerHTML)) || //3rd row
-           ((g.innerHTML == e.innerHTML) && (e.innerHTML == c.innerHTML))) {
+    if(a[6].innerHTML == ""  && make_move == 0) {
+        a[6].innerHTML = check_value();
+        present[6] = true;
+        if(((a[0].innerHTML == a[3].innerHTML) && (a[3].innerHTML == a[6].innerHTML)) || //1st column
+           ((a[6].innerHTML == a[7].innerHTML) && (a[7].innerHTML == a[8].innerHTML)) || //3rd row
+           ((a[6].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[2].innerHTML))) {
             make_move = 1;
             which_player(g);
             return;
@@ -144,10 +150,11 @@ function g_click() {
     }
 }
 function h_click() {
-    if(h.innerHTML == ""  && make_move == 0){
-        h.innerHTML = check_value();
-        if(((g.innerHTML == h.innerHTML) && (h.innerHTML == i.innerHTML)) || //3rd row
-           ((b.innerHTML == e.innerHTML) && (e.innerHTML == h.innerHTML)) ) { //2nd column
+    if(a[7].innerHTML == ""  && make_move == 0){
+        a[7].innerHTML = check_value();
+        present[7] = true;
+        if(((a[6].innerHTML == a[7].innerHTML) && (a[7].innerHTML == a[8].innerHTML)) || //3rd row
+           ((a[1].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[7].innerHTML)) ) { //2nd column
             make_move = 1;
             which_player(h);
             return;
@@ -156,11 +163,12 @@ function h_click() {
     }
 }
 function i_click() {
-    if(i.innerHTML == ""  && make_move == 0) {
-        i.innerHTML = check_value();
-        if(((g.innerHTML == h.innerHTML) && (h.innerHTML == i.innerHTML)) || //3rd row
-           ((c.innerHTML == f.innerHTML) && (f.innerHTML == i.innerHTML)) || //3rd column
-           ((a.innerHTML == e.innerHTML) && (e.innerHTML == i.innerHTML))) { //left diagonal
+    if(a[8].innerHTML == ""  && make_move == 0) {
+        a[8].innerHTML = check_value();
+        present[8] = true;
+        if(((a[6].innerHTML == a[7].innerHTML) && (a[7].innerHTML == a[8].innerHTML)) || //3rd row
+           ((a[2].innerHTML == a[5].innerHTML) && (a[5].innerHTML == a[8].innerHTML)) || //3rd column
+           ((a[0].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[8].innerHTML))) { //left diagonal
             make_move = 1;
             which_player(i);
             return;
@@ -168,17 +176,30 @@ function i_click() {
         common_code();
     }
 }
-
+function comp_play(strings) {
+    let empty_places = [];
+    for(let i=0;i<9;i++) {
+        if(present[i] == false) {
+            empty_places.push(i);
+        }
+    }
+    let randomNumber = empty_places[Math.floor(Math.random()*empty_places.length)]; //random position from empty places
+    if(randomNumber == 0) {a_click();}
+    else if(randomNumber == 1) {b_click();}
+    else if(randomNumber == 2) {c_click();}
+    else if(randomNumber == 3) {d_click();}
+    else if(randomNumber == 4) {e_click();}
+    else if(randomNumber == 5) {f_click();}
+    else if(randomNumber == 6) {g_click();}
+    else if(randomNumber == 7) {h_click();}
+    else if(randomNumber == 8) {i_click();}
+    return;
+}
 function clear_fields() { // Function to clear all fields
-    a.innerHTML = "";
-    b.innerHTML = "";
-    c.innerHTML = "";
-    d.innerHTML = "";
-    e.innerHTML = "";
-    f.innerHTML = "";
-    g.innerHTML = "";
-    h.innerHTML = "";
-    i.innerHTML = "";
+    for (let i=0;i<9;i++) {
+        a[i].innerHTML = '';
+    }
+    present = [false,false,false,false,false,false,false,false,false];
     times = 0;
     make_move = 0;
     turn = 0;
