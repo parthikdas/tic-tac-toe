@@ -9,7 +9,15 @@ var present = [false,false,false,false,false,false,false,false,false];//false me
 var turn = 0; //if turn is 0 then its player 1 turn else if 1 then player 2
 var times = 0; //if times exceeds 9 then make it 0 and clear screen
 var make_move = 0; //after somebody wins and name is showing for 3sec within that time no player should make a move 
-var win_player1 = 0, win_player2 = 0;
+var win_player1 = 0, win_player2 = 0; //to store who won for how many times
+var compPlay = 0;
+
+function give_val(clicked_id) { //Function to check who will play
+    document.getElementById('user_choice').style.display = 'none'; // got the value now remove section
+    if(clicked_id == 'compPlay') {
+        compPlay = 1;
+    }
+}
 
 // Code for dark mode starts
 document.getElementById('mode').addEventListener('click', function () {
@@ -33,9 +41,11 @@ function next_turn() { //This function checks whose turn it is
         turn = 1;
         player1.style.boxShadow = "0 .4rem .5rem rgba(0, 0, 0, 0.4)";
         player2.style.boxShadow = "0 .4rem .5rem #146ca4";
-        setTimeout(() => { //some delay in computer's move
+        if(compPlay == 1) { //if user had selected that computer will play then only comp will play
+            setTimeout(() => { //some delay in computer's move
             comp_play('O');
         },500);
+        }
     } else {
         turn = 0;
         player1.style.boxShadow = "0 .4rem .5rem #146ca4";
@@ -108,13 +118,14 @@ function d_click() {
         common_code();
     }
 }
-function e_click() {
+function e_click() { //only box in middle to have both diagonal in common
     if(a[4].innerHTML == ""  && make_move == 0) {
         a[4].innerHTML = check_value();
         present[4] = true;
         if(((a[3].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[5].innerHTML)) || //2nd row
            ((a[1].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[7].innerHTML)) || //2nd column
-           ((a[0].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[8].innerHTML))) { //left diagonal
+           ((a[0].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[8].innerHTML)) || //left diagonal
+           ((a[2].innerHTML == a[4].innerHTML) && (a[4].innerHTML == a[6].innerHTML))) { //right diagonal
             make_move = 1;
             which_player(e);
             return;
